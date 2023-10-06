@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 public class Player_Movement : MonoBehaviour
 {
     //public 
+    public bool is_platformer_movement = true;
     public float movement_speed = 1;
     public float movement_slowing = 1;
     public float jump_speed = 1;
@@ -26,7 +27,7 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         //Input
-        if (Input.GetKey(KeyCode.Space)) directional_input[0] = true; //Up
+        if (Input.GetKey(KeyCode.Space) && is_platformer_movement || Input.GetKey(KeyCode.W) && !is_platformer_movement) directional_input[0] = true; //Up
         else directional_input[0] = false;
         if (Input.GetKey(KeyCode.A)) directional_input[1] = true; //Left
         else directional_input[1] = false;
@@ -38,7 +39,8 @@ public class Player_Movement : MonoBehaviour
     //FixedUpdate called every fixed framerate frame
     private void FixedUpdate()
     {
-        if (ground_check.touching_ground == true)
+        //PLATFORMER MOVEMENT
+        if (is_platformer_movement && ground_check.touching_ground == true)
         {
             if (directional_input[3] == true) //right
             {
@@ -55,6 +57,40 @@ public class Player_Movement : MonoBehaviour
                 float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
                 rb.AddForce(new Vector2(0, (rb.mass * jump_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime)); //Ft = Mv - Mu
             }
-        } 
+        }
+        //TOP DOWN MOVEMENT
+        if (!is_platformer_movement)
+        {
+            if (directional_input[3] == true) //right
+            {
+                float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.right);
+                rb.AddForce(new Vector2((rb.mass * movement_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime, 0)); //Ft = Mv - Mu
+            }
+            else if (directional_input[1] == true) //left
+            {
+                float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.right);
+                rb.AddForce(new Vector2((rb.mass * -movement_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime, 0)); //Ft = Mv - Mu
+            }
+            else if (rb.velocity.x != 0)
+            {
+                float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.right);
+                rb.AddForce(new Vector2((0 - rb.mass * velocityInDirection) / Time.fixedDeltaTime * movement_slowing, 0)); //Ft = Mv - Mu
+            }
+            if (directional_input[0] == true) //up
+            {
+                float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
+                rb.AddForce(new Vector2(0, (rb.mass * movement_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime)); //Ft = Mv - Mu
+            }
+            else if (directional_input[2] == true) //down
+            {
+                float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
+                rb.AddForce(new Vector2(0, (rb.mass * -movement_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime)); //Ft = Mv - Mu
+            }
+            else if (rb.velocity.y != 0)
+            {
+                float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
+                rb.AddForce(new Vector2(0, (0 - rb.mass * velocityInDirection) / Time.fixedDeltaTime * movement_slowing)); //Ft = Mv - Mu
+            }
+        }
     }
 }
