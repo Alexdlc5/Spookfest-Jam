@@ -30,7 +30,7 @@ public class Player_Movement : MonoBehaviour
         else directional_input[0] = false;
         if (Input.GetKey(KeyCode.A)) directional_input[1] = true; //Left
         else directional_input[1] = false;
-        if (Input.GetKey(KeyCode.S)) directional_input[2] = true; //Down
+        if (Input.GetKey(KeyCode.S)) directional_input[2] = true; //Down 
         else directional_input[2] = false;
         if (Input.GetKey(KeyCode.D)) directional_input[3] = true; //Right
         else directional_input[3] = false;
