@@ -13,17 +13,17 @@ public class Player_Movement : MonoBehaviour
     public float jump_speed = 1;
     public float gravity_strength = 1;
     public bool is_sneaking = false;
+    public float groundDist;
+    public LayerMask terrainLayer;
     //private 
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     private GroundCheck ground_check;
     private bool[] directional_input = {false,false,false,false,false}; //in order (up,left,down,right)
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        ground_check = GetComponentInChildren<GroundCheck>();
-        rb.gravityScale = gravity_strength;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -40,6 +40,20 @@ public class Player_Movement : MonoBehaviour
         else directional_input[3] = false;
         if (Input.GetKey(KeyCode.LeftShift)) directional_input[4] = true; //Down 
         else directional_input[4] = false;
+
+        //Raycast in order to maintain set distance above terrain :p
+        RaycastHit hit;
+        Vector3 castPos = transform.position;
+        castPos.y += 1;
+        if(Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
+        {
+            if (hit.collider != null)
+            {
+                Vector3 movePos = transform.position;
+                movePos.y = hit.point.y + groundDist;
+                transform.position = movePos;
+            }
+        }
     }
     //FixedUpdate called every fixed framerate frame
     private void FixedUpdate()
