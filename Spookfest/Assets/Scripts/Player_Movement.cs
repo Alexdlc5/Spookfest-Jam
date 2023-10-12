@@ -9,17 +9,17 @@ public class Player_Movement : MonoBehaviour
     public bool is_platformer_movement = true;
     public float movement_speed = 1;
     public float crouched_movement_speed = 1;
+    public float sprinting_movement_speed = 1;
     public float movement_slowing = 1;
     public float jump_speed = 1;
     public float gravity_strength = 1;
-    public bool is_sneaking = false;
+    public int visibility = 0; //-2 = invisible, -1 = visible in prox., 0 = visible at med. distance, 1 = visible at distance
     public float groundDist;
     public LayerMask terrainLayer;
     //private 
     private Rigidbody rb;
     private GroundCheck ground_check;
-    private bool[] directional_input = {false,false,false,false,false}; //in order (up,left,down,right)
-
+    private bool[] directional_input = {false,false,false,false,false,false}; //in order (up,left,down,right)
     // Start is called before the first frame update
     void Start()
     {
@@ -38,14 +38,19 @@ public class Player_Movement : MonoBehaviour
         else directional_input[2] = false;
         if (Input.GetKey(KeyCode.D)) directional_input[3] = true; //Right
         else directional_input[3] = false;
-        if (Input.GetKey(KeyCode.LeftShift)) directional_input[4] = true; //Down 
+        if (Input.GetKey(KeyCode.LeftControl)) directional_input[4] = true; //crouch 
         else directional_input[4] = false;
-
+        if (Input.GetKey(KeyCode.LeftShift)) directional_input[5] = true; //run
+        else directional_input[5] = false;
+    }
+    //FixedUpdate called every fixed framerate frame
+    private void FixedUpdate()
+    {
         //Raycast in order to maintain set distance above terrain :p
         RaycastHit hit;
         Vector3 castPos = transform.position;
         castPos.y += 1;
-        if(Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
+        if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
         {
             if (hit.collider != null)
             {
@@ -54,10 +59,6 @@ public class Player_Movement : MonoBehaviour
                 transform.position = movePos;
             }
         }
-    }
-    //FixedUpdate called every fixed framerate frame
-    private void FixedUpdate()
-    {
         //PLATFORMER MOVEMENT
         if (is_platformer_movement && ground_check.touching_ground == true)
         {
@@ -80,15 +81,24 @@ public class Player_Movement : MonoBehaviour
         //TOP DOWN MOVEMENT
         if (!is_platformer_movement)
         {
+            //------------------****Make so when player is close to bush and NOT crouching and NOT sprinting, visibility = -1;, also check if not close to bush visiblity = 0;
             float effected_movement = movement_speed;
             if (directional_input[4])
             {
                 effected_movement = crouched_movement_speed;
-                is_sneaking = true;
+                //if crouched outside bush
+                visibility = -1;
+                //if crouched inside bush ------****make so when player in proximity to bush and pressing crouch you are made invisible****
+                //visibility = -2;
             }
-            else
+            if (directional_input[5])
             {
-                is_sneaking = false;
+                effected_movement = sprinting_movement_speed;
+                visibility = 1;
+            }
+            else if (!directional_input[4] && !directional_input[5])
+            {
+                visibility = 0;
             }
 
             if (directional_input[3] == true) //right
