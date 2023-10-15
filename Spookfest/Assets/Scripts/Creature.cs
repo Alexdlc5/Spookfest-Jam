@@ -8,15 +8,15 @@ public class Creature : MonoBehaviour
 {
     //public
     public float movement_speed = 2;
-    public float untamed_movement_speed_debuff = .75f;
+    public float tamed_movement_speed_debuff = .75f;
     public float panic_movement_speed = 4.5f;
     public float movement_slowing = 1;
     public float untamed_flee_distance = 5;
     public float untamed_panic_time = 3;
     //private
     private Rigidbody rb;
-    private bool tamed = false;
-    private bool panic_mode = false;    
+    private bool tamed = true; //testing--------------------------------------------------------------------
+    private bool movement_active_mode = false;    
     private bool[] directional_input = {false, false, false, false};
     private GameObject player;
     //feel free to add more boosts/perks these are all i could think of so far
@@ -34,38 +34,77 @@ public class Creature : MonoBehaviour
         if (tamed)
         {
             //tamed behavior
+            Vector2 player_pos = player.transform.position;
+            bool[] player_direction = playerDirection(player_pos);
+            float player_distance = Vector2.Distance(player_pos, transform.position);
+            //check if player is far
+            if (player_distance > untamed_flee_distance)
+            {
+                movement_active_mode = true;
+            }
+            else
+            {
+                movement_active_mode = false;
+                directional_input[0] = false;
+                directional_input[1] = false;
+                directional_input[2] = false;
+                directional_input[3] = false;
+            }
+            //while too far from player
+            if (movement_active_mode)
+            {
+                if (player_direction[0])
+                {
+                    directional_input[2] = false;
+                    directional_input[0] = true;
+                }
+                else if (player_direction[2])
+                {
+                    directional_input[2] = true;
+                    directional_input[0] = false;
+                }
+                if (player_direction[1])
+                {
+                    directional_input[1] = false;
+                    directional_input[3] = true;
+                }
+                else if (player_direction[3])
+                {
+                    directional_input[1] = true;
+                    directional_input[3] = false;
+                }
+            }
         }
         else
         {
             //untamed behavior
             Vector2 player_pos = player.transform.position;
+            bool[] player_direction = playerDirection(player_pos);
             float player_distance = Vector2.Distance(player_pos, transform.position);
-            bool player_above = player.transform.position.y > transform.position.y;
-            bool player_right = player.transform.position.x > transform.position.x;
             //check if player is visible and close
             if (player_distance < untamed_flee_distance && player.GetComponent<Player_Movement>().visibility > -1)
             {
-                panic_mode = true;
+                movement_active_mode = true;
             }
             //while panicking
-            if (panic_mode)
+            if (movement_active_mode)
             {
-                if (player_above)
+                if (player_direction[0])
                 {
                     directional_input[2] = true;
                     directional_input[0] = false;
                 }
-                else
+                else if (player_direction[2])
                 {
                     directional_input[2] = false;
                     directional_input[0] = true;
                 }
-                if (player_right)
+                if (player_direction[1])
                 {
                     directional_input[1] = true;
                     directional_input[3] = false;
                 }
-                else
+                else if (player_direction[3])
                 {
                     directional_input[1] = false;
                     directional_input[3] = true;
@@ -86,18 +125,18 @@ public class Creature : MonoBehaviour
     {
         float effected_movement_speed = movement_speed;
         //PANIC MODE
-        if (panic_mode && untamed_panic_time <= 3 && untamed_panic_time >= 0)
+        if (!tamed && movement_active_mode && untamed_panic_time <= 3 && untamed_panic_time >= 0)
         {
             effected_movement_speed = panic_movement_speed;
             untamed_panic_time -= Time.fixedDeltaTime;
         }
-        else if (panic_mode && untamed_panic_time < 0)
+        else if (!tamed && movement_active_mode && untamed_panic_time < 0)
         {
-            panic_mode = false;
+            movement_active_mode = false;
             untamed_panic_time = 3;
         }
-        //UNTAMED MOVEMENT SPEED
-        if (!tamed) effected_movement_speed -= untamed_movement_speed_debuff;
+        //TAMED MOVEMENT SPEED
+        if (tamed) effected_movement_speed -= tamed_movement_speed_debuff;
         //creature movement
         if (directional_input[3] == true) //right
         {
@@ -129,6 +168,14 @@ public class Creature : MonoBehaviour
             float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
             rb.AddForce(new Vector2(0, (0 - rb.mass * velocityInDirection) / Time.fixedDeltaTime * movement_slowing)); //Ft = Mv - Mu
         }
+    }
+    private bool[] playerDirection(Vector2 player_pos)
+    {
+        bool player_above = player_pos.y > transform.position.y + 1;
+        bool player_right = player_pos.x > transform.position.x + 1;
+        bool player_below = player_pos.y < transform.position.y - 1;
+        bool player_left = player_pos.x < transform.position.x - 1;
+        return new bool[]{player_above, player_below, player_right, player_left};
     }
     public void tame()
     {
