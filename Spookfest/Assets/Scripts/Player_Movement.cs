@@ -16,6 +16,7 @@ public class Player_Movement : MonoBehaviour
     public int visibility = 0; //-2 = invisible, -1 = visible in prox., 0 = visible at med. distance, 1 = visible at distance
     public float groundDist;
     public LayerMask terrainLayer;
+    public Collider col;
     //private 
     private Rigidbody rb;
     private GroundCheck ground_check;
@@ -46,19 +47,16 @@ public class Player_Movement : MonoBehaviour
     //FixedUpdate called every fixed framerate frame
     private void FixedUpdate()
     {
-        //Raycast in order to maintain set distance above terrain :p
         RaycastHit hit;
-        Vector3 castPos = transform.position;
-        castPos.y += 1;
-        if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
+        Ray ray = new Ray(transform.position, Vector3.down);
+ 
+        if (col.Raycast(ray, out hit, 1000))
         {
-            if (hit.collider != null)
-            {
-                Vector3 movePos = transform.position;
-                movePos.y = hit.point.y + groundDist;
-                transform.position = movePos;
-            }
+           transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+ 
         }
+        
+        
         //PLATFORMER MOVEMENT
         if (is_platformer_movement && ground_check.touching_ground == true)
         {
