@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f1060ce473902418d08e19f1577a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
+  is_still_object: 1
+  active_distance: 30
   offset: 0
-  camera: {fileID: 0}
 --- !u!1 &5653531187945248066
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +153,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1368717
+  m_Radius: 0.62280405
   m_Height: 1.5182707
-  m_Direction: 0
-  m_Center: {x: -0.03586471, y: -0.87895346, z: 0}
+  m_Direction: 1
+  m_Center: {x: -0.052393317, y: -0.87895346, z: 0}

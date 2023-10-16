@@ -14,9 +14,9 @@ public class Player_Movement : MonoBehaviour
     public float jump_speed = 1;
     public float gravity_strength = 1;
     public int visibility = 0; //-2 = invisible, -1 = visible in prox., 0 = visible at med. distance, 1 = visible at distance
-    public float groundDist;
-    public LayerMask terrainLayer;
-    public Collider col;
+    //public float groundDist;
+    //public LayerMask terrainLayer;
+    //public Collider col;
     //private 
     private Rigidbody rb;
     private GroundCheck ground_check;
@@ -47,14 +47,14 @@ public class Player_Movement : MonoBehaviour
     //FixedUpdate called every fixed framerate frame
     private void FixedUpdate()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, Vector3.down);
+        //RaycastHit hit;
+        //Ray ray = new Ray(transform.position, Vector3.down);
  
-        if (col.Raycast(ray, out hit, 1000))
-        {
-           transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+        //if (col.Raycast(ray, out hit, 1000))
+        //{
+        //   transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
  
-        }
+        //}
         
         
         //PLATFORMER MOVEMENT

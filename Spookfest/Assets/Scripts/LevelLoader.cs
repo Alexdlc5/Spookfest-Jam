@@ -11,7 +11,7 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) //change to hitting a trigger
         {
             LoadNextLevel();
         }
@@ -20,7 +20,6 @@ public class LevelLoader : MonoBehaviour
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-        
     }
 
     IEnumerator LoadLevel(int levelIndex)

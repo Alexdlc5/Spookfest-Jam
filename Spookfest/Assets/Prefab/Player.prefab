@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6121114109156977585}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,16 +101,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_platformer_movement: 0
-  movement_speed: 2
-  crouched_movement_speed: 0.75
+  movement_speed: 9.8
+  crouched_movement_speed: 7
+  sprinting_movement_speed: 11
   movement_slowing: 1
   jump_speed: 0
   gravity_strength: 0
-  is_sneaking: 0
-  groundDist: 0
-  terrainLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  visibility: 0
 --- !u!54 &735700225227702038
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,10 +154,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.09647769
+  m_Radius: 0.3690157
   m_Height: 1
   m_Direction: 0
-  m_Center: {x: 0, y: -0.5036667, z: 0}
+  m_Center: {x: 0, y: -0.120325804, z: 0}
 --- !u!1 &551933980201250055
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,5 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f1060ce473902418d08e19f1577a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  is_still_object: 1
+  active_distance: 30
   offset: 0
-  camera: {fileID: 0}
