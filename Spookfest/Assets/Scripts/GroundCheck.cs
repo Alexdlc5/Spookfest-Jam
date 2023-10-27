@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    public bool touching_ground = false;
+    public bool touching_ground = true;
     private HashSet<GameObject> ground_objects = new HashSet<GameObject>();
     private void OnTriggerEnter2D(Collider2D collision)
     {

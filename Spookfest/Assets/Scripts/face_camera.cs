@@ -25,9 +25,9 @@ public class face_camera : MonoBehaviour
         if (active && (!is_still_object || Vector2.Distance(player.transform.position, transform.position) <= active_distance))
         {
             //get angle between mouse and object, rotate accordingly
-            Vector3 targetPos = camera.transform.position - transform.position;
-            float angle_yx = Mathf.Atan2(targetPos.y, -targetPos.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle_yx + offset, Vector3.right);
+            //Vector3 targetPos = camera.transform.position - transform.position;
+            //float angle_yx = Mathf.Atan2(targetPos.y, -targetPos.z) * Mathf.Rad2Deg;
+            //transform.rotation = Quaternion.AngleAxis(angle_yx + offset, Vector3.right);
             sr.sortingOrder = -(int)(10 * transform.position.y);
         }
     }

@@ -54,7 +54,7 @@ public class Player_Movement : MonoBehaviour
         }
 
       
-        if (Input.GetKey(KeyCode.Space)) directional_input[4] = true; //jump
+        if (Input.GetKeyDown(KeyCode.Space)) directional_input[4] = true; //jump
         else directional_input[4] = false;
         if (Input.GetKey(KeyCode.LeftShift)) directional_input[5] = true; //run
         else directional_input[5] = false;
@@ -96,23 +96,23 @@ public class Player_Movement : MonoBehaviour
         {
             //------------------****Make so when player is close to bush and NOT crouching and NOT sprinting, visibility = -1;, also check if not close to bush visiblity = 0;
             float effected_movement = movement_speed;
-            if (directional_input[4])
-            {
-                effected_movement = crouched_movement_speed;
-                //if crouched outside bush
-                visibility = -1;
-                //if crouched inside bush ------****make so when player in proximity to bush and pressing crouch you are made invisible****
-                //visibility = -2;
-            }
-            if (directional_input[5])
-            {
-                effected_movement = sprinting_movement_speed;
-                visibility = 1;
-            }
-            else if (!directional_input[4] && !directional_input[5])
-            {
-                visibility = 0;
-            }
+            //if (directional_input[4])
+            //{
+            //    effected_movement = crouched_movement_speed;
+            //    //if crouched outside bush
+            //    visibility = -1;
+            //    //if crouched inside bush ------****make so when player in proximity to bush and pressing crouch you are made invisible****
+            //    //visibility = -2;
+            //}
+            //if (directional_input[5])
+            //{
+            //    effected_movement = sprinting_movement_speed;
+            //    visibility = 1;
+            //}
+            //else if (!directional_input[4] && !directional_input[5])
+            //{
+            //    visibility = 0;
+            //}
 
             if (directional_input[3] == true) //right
             {
@@ -144,10 +144,10 @@ public class Player_Movement : MonoBehaviour
                 float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
                 rb.AddForce(new Vector2(0, (0 - rb.mass * velocityInDirection) / Time.fixedDeltaTime * movement_slowing)); //Ft = Mv - Mu
             }
-            if (directional_input[0] == true && GroundCheck.) //up
+            if (directional_input[4] == true && ground_check.touching_ground) //up
             {
-                float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
-                rb.AddForce(new Vector2(0, (rb.mass * jump_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime)); //Ft = Mv - Mu
+                float velocityInDirection = Vector3.Dot(rb.velocity, Vector3.back);
+                rb.AddForce(new Vector3(0, 0, -(rb.mass * jump_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime)); //Ft = Mv - Mu
             }
         }
     }
