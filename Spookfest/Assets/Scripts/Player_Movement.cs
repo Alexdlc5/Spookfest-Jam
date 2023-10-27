@@ -25,21 +25,36 @@ public class Player_Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ground_check = GetComponentInChildren<GroundCheck>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        directional_input[0] = false; //Up
+        directional_input[1] = false; //Up
+        directional_input[2] = false; //Up
+        directional_input[3] = false; //Up
         //Input
-        if (Input.GetKey(KeyCode.Space) && is_platformer_movement || Input.GetKey(KeyCode.W) && !is_platformer_movement) directional_input[0] = true; //Up
-        else directional_input[0] = false;
-        if (Input.GetKey(KeyCode.A)) directional_input[1] = true; //Left
-        else directional_input[1] = false;
-        if (Input.GetKey(KeyCode.S)) directional_input[2] = true; //Down 
-        else directional_input[2] = false;
-        if (Input.GetKey(KeyCode.D)) directional_input[3] = true; //Right
-        else directional_input[3] = false;
-        if (Input.GetKey(KeyCode.LeftControl)) directional_input[4] = true; //crouch 
+        if (Input.GetKey(KeyCode.W) && !is_platformer_movement)
+        {
+            directional_input[0] = true; //Up
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            directional_input[1] = true; //Left
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            directional_input[2] = true; //Down 
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            directional_input[3] = true; //Right
+        }
+
+      
+        if (Input.GetKey(KeyCode.Space)) directional_input[4] = true; //jump
         else directional_input[4] = false;
         if (Input.GetKey(KeyCode.LeftShift)) directional_input[5] = true; //run
         else directional_input[5] = false;
@@ -128,6 +143,11 @@ public class Player_Movement : MonoBehaviour
             {
                 float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
                 rb.AddForce(new Vector2(0, (0 - rb.mass * velocityInDirection) / Time.fixedDeltaTime * movement_slowing)); //Ft = Mv - Mu
+            }
+            if (directional_input[0] == true && GroundCheck.) //up
+            {
+                float velocityInDirection = Vector3.Dot(rb.velocity, Vector2.up);
+                rb.AddForce(new Vector2(0, (rb.mass * jump_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime)); //Ft = Mv - Mu
             }
         }
     }

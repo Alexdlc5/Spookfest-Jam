@@ -59,7 +59,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5326259515779175904}
   - component: {fileID: 6669311629948526374}
-  - component: {fileID: 1974502788799603082}
+  - component: {fileID: 5803792278848316547}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -134,8 +134,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!136 &1974502788799603082
-CapsuleCollider:
+--- !u!65 &5803792278848316547
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -152,8 +152,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.18066406
-  m_Height: 3.5706382
-  m_Direction: 1
-  m_Center: {x: -0.4684614, y: -3.1909726, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.38, y: 10, z: 0.2}
+  m_Center: {x: -0.5, y: 0, z: 0}
