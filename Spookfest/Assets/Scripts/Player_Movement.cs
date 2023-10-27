@@ -54,7 +54,7 @@ public class Player_Movement : MonoBehaviour
         }
 
       
-        if (Input.GetKeyDown(KeyCode.Space)) directional_input[4] = true; //jump
+        if (Input.GetKey(KeyCode.Space)) directional_input[4] = true; //jump
         else directional_input[4] = false;
         if (Input.GetKey(KeyCode.LeftShift)) directional_input[5] = true; //run
         else directional_input[5] = false;
