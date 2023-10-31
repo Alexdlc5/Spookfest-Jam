@@ -20,7 +20,7 @@ public class Creature : MonoBehaviour
     private bool[] directional_input = {false, false, false, false};
     private GameObject player;
     //feel free to add more boosts/perks these are all i could think of so far
-    public string[] boosts = { "Health", "Speed", "Sneak", "Sight"};
+    public string[] boosts = { "Health", "Speed", "Sight"};
     // Start is called before the first frame update
     void Start()
     {
