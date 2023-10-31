@@ -13,9 +13,10 @@ public class Creature : MonoBehaviour
     public float movement_slowing = 1;
     public float untamed_flee_distance = 5;
     public float untamed_panic_time = 3;
+    public Animator anim;
     //private
     private Rigidbody rb;
-    private bool tamed = true; //testing--------------------------------------------------------------------
+    private bool tamed = false; //testing--------------------------------------------------------------------
     private bool movement_active_mode = false;    
     private bool[] directional_input = {false, false, false, false};
     private GameObject player;
@@ -26,10 +27,12 @@ public class Creature : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
     }
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("p", movement_active_mode);
         //creature behavior
         if (tamed)
         {
@@ -120,6 +123,15 @@ public class Creature : MonoBehaviour
                 directional_input[3] = false;
             }
         }
+        //manage animations
+        if (movement_active_mode && directional_input[3] && directional_input[1])
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            if (directional_input[3] && directional_input[1])
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            }
+        } 
     }
     private void FixedUpdate()
     {

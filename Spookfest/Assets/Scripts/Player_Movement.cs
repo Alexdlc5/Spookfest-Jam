@@ -14,6 +14,7 @@ public class Player_Movement : MonoBehaviour
     public float jump_speed = 1;
     public float gravity_strength = 1;
     public int visibility = 0; //-2 = invisible, -1 = visible in prox., 0 = visible at med. distance, 1 = visible at distance
+    public Animator anim;
     //public float groundDist;
     //public LayerMask terrainLayer;
     //public Collider col;
@@ -26,6 +27,7 @@ public class Player_Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         ground_check = GetComponentInChildren<GroundCheck>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -52,12 +54,23 @@ public class Player_Movement : MonoBehaviour
         {
             directional_input[3] = true; //Right
         }
-
-      
         if (Input.GetKey(KeyCode.Space)) directional_input[4] = true; //jump
         else directional_input[4] = false;
         if (Input.GetKey(KeyCode.LeftShift)) directional_input[5] = true; //run
         else directional_input[5] = false;
+
+        for (int i = 0; i < directional_input.Length; i++)
+        {
+            if (directional_input[i])
+            {
+                anim.SetBool("moving", true);
+                break;
+            }
+            else
+            {
+                anim.SetBool("moving", false);
+            }
+        }
     }
     //FixedUpdate called every fixed framerate frame
     private void FixedUpdate()
