@@ -20,6 +20,7 @@ public class Creature : MonoBehaviour
     private bool movement_active_mode = false;    
     private bool[] directional_input = {false, false, false, false};
     private GameObject player;
+    private AudioSource footsteps;
     //feel free to add more boosts/perks these are all i could think of so far
     public string[] boosts = { "Health", "Speed", "Sight"};
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class Creature : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        footsteps = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -106,6 +108,7 @@ public class Creature : MonoBehaviour
                 {
                     directional_input[1] = true;
                     directional_input[3] = false;
+  
                 }
                 else if (player_direction[3])
                 {
@@ -124,14 +127,26 @@ public class Creature : MonoBehaviour
             }
         }
         //manage animations
-        if (movement_active_mode && directional_input[3] && directional_input[1])
+        if (movement_active_mode)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            if (directional_input[3] && directional_input[1])
+            transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            if (directional_input[3])
             {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                transform.localRotation = Quaternion.Euler(new Vector3(60, 0, 180));
             }
-        } 
+        }
+        foreach (bool i in directional_input)
+        {
+            if (i)
+            {
+                footsteps.Play();
+                break;
+            }
+            else
+            {
+                footsteps.Pause();
+            }
+        }
     }
     private void FixedUpdate()
     {

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e80033611291704f8280aec24ce1b02
+guid: 67a954dde9dab4f47bf920f86e72a400
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -84,12 +84,12 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_0
+      name: thumbnail_Witch-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 884cba6163719c541b9b20fff4c5cb8f
-      internalID: 2140571460
+      spriteID: a17dcd7f2ce569e4fb0f34a9208881a1
+      internalID: 1300939425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_1
+      name: thumbnail_Witch-Sheet_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e05020d0e8df8a48a9ded2b2b18be64
-      internalID: -378233996
+      spriteID: 2776b61def8f8344ab60cee899690074
+      internalID: -901026529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_2
+      name: thumbnail_Witch-Sheet_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 192
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31bbc8aa97abb5a499ae708f485ad740
-      internalID: -1007044505
+      spriteID: db30e8b8c6e1f27419eb7403bf066ce5
+      internalID: -817813349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_3
+      name: thumbnail_Witch-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d89a1d697c36f6f4eb204040226fa094
+      internalID: -1733835734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thumbnail_Witch-Sheet_4
       rect:
         serializedVersion: 2
         x: 384
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c610e1515a648ba4b8e359511c9b2d63
-      internalID: -2016391049
+      spriteID: 779651c0ddec9dc46b6622697c12b993
+      internalID: -2133014513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_4
+      name: thumbnail_Witch-Sheet_5
       rect:
         serializedVersion: 2
-        x: 512
+        x: 480
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +255,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15b8db9d35f175047abace24c6b96b31
-      internalID: 1371055729
+      spriteID: 889a3d03ec317d3449c1067de739d416
+      internalID: -929315764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_5
+      name: thumbnail_Witch-Sheet_6
       rect:
         serializedVersion: 2
-        x: 640
+        x: 576
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +276,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d126c945c3b90f242b962697238525f9
-      internalID: -1641230811
+      spriteID: 1a457b425d16eb342b5e1a8db43ea2ee
+      internalID: -2005348887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_6
+      name: thumbnail_Witch-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db5233ca5e245146a933061fb52fc7c
+      internalID: 417105707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thumbnail_Witch-Sheet_8
       rect:
         serializedVersion: 2
         x: 768
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,20 +318,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60ce11a1926db5947bd8ad3d04061edd
-      internalID: -283684388
+      spriteID: 2c9912106feb11e439775fca37fa5d9a
+      internalID: -287518704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_7
+      name: thumbnail_Witch-Sheet_9
       rect:
         serializedVersion: 2
-        x: 896
+        x: 864
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,20 +339,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9bbded71fb64bc4d8750c451147b93d
-      internalID: -1001159597
+      spriteID: 68ce961adeb2c6b43a3bb7f24c888a48
+      internalID: -2037167536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_8
+      name: thumbnail_Witch-Sheet_10
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 960
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +360,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ac25923112a1ec49b79440ef9fa158f
-      internalID: -1525150172
+      spriteID: a5728f93e12962f4b8879f90abf31a9b
+      internalID: -368085871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_9
+      name: thumbnail_Witch-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 968675b05d6136746b11e7899997a99c
+      internalID: -1260868953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thumbnail_Witch-Sheet_12
       rect:
         serializedVersion: 2
         x: 1152
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,20 +402,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f120ea6d18a27942bc44b569a887840
-      internalID: 1500313035
+      spriteID: 8a425f8f092482e4f8a98fe2b1137318
+      internalID: -1125771824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thumbnail_Pumpkat-Sheet_10
+      name: thumbnail_Witch-Sheet_13
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1248
         y: 0
-        width: 128
-        height: 128
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,8 +423,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3bbe1ea4a3b1f945976a855436a5260
-      internalID: 72764109
+      spriteID: 43a522c69a9ec984fac14c041c0bbd80
+      internalID: -1202245105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thumbnail_Witch-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0806a141b2b286d4e9f59c76038a3390
+      internalID: -848809139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thumbnail_Witch-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5010a5e8eb165a4095c33ea503a819c
+      internalID: -888115137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thumbnail_Witch-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc618aecc0c82084ba3b75bd47f751a9
+      internalID: -1925379701
       vertices: []
       indices: 
       edges: []
@@ -377,17 +503,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      thumbnail_Pumpkat-Sheet_0: 2140571460
-      thumbnail_Pumpkat-Sheet_1: -378233996
-      thumbnail_Pumpkat-Sheet_10: 72764109
-      thumbnail_Pumpkat-Sheet_2: -1007044505
-      thumbnail_Pumpkat-Sheet_3: -2016391049
-      thumbnail_Pumpkat-Sheet_4: 1371055729
-      thumbnail_Pumpkat-Sheet_5: -1641230811
-      thumbnail_Pumpkat-Sheet_6: -283684388
-      thumbnail_Pumpkat-Sheet_7: -1001159597
-      thumbnail_Pumpkat-Sheet_8: -1525150172
-      thumbnail_Pumpkat-Sheet_9: 1500313035
+      thumbnail_Witch-Sheet_0: 1300939425
+      thumbnail_Witch-Sheet_1: -901026529
+      thumbnail_Witch-Sheet_10: -368085871
+      thumbnail_Witch-Sheet_11: -1260868953
+      thumbnail_Witch-Sheet_12: -1125771824
+      thumbnail_Witch-Sheet_13: -1202245105
+      thumbnail_Witch-Sheet_14: -848809139
+      thumbnail_Witch-Sheet_15: -888115137
+      thumbnail_Witch-Sheet_16: -1925379701
+      thumbnail_Witch-Sheet_2: -817813349
+      thumbnail_Witch-Sheet_3: -1733835734
+      thumbnail_Witch-Sheet_4: -2133014513
+      thumbnail_Witch-Sheet_5: -929315764
+      thumbnail_Witch-Sheet_6: -2005348887
+      thumbnail_Witch-Sheet_7: 417105707
+      thumbnail_Witch-Sheet_8: -287518704
+      thumbnail_Witch-Sheet_9: -2037167536
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

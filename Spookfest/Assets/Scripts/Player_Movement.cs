@@ -19,12 +19,14 @@ public class Player_Movement : MonoBehaviour
     //public LayerMask terrainLayer;
     //public Collider col;
     //private 
+    private AudioSource footsteps;
     private Rigidbody rb;
     private GroundCheck ground_check;
     private bool[] directional_input = {false,false,false,false,false,false}; //in order (up,left,down,right)
     // Start is called before the first frame update
     void Start()
     {
+        footsteps = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         ground_check = GetComponentInChildren<GroundCheck>();
         anim = GetComponentInChildren<Animator>();
@@ -64,11 +66,13 @@ public class Player_Movement : MonoBehaviour
             if (directional_input[i])
             {
                 anim.SetBool("moving", true);
+                footsteps.Play();
                 break;
             }
             else
             {
                 anim.SetBool("moving", false);
+                footsteps.Pause();
             }
         }
     }
