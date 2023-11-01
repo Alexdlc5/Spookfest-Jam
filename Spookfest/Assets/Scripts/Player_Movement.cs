@@ -15,6 +15,7 @@ public class Player_Movement : MonoBehaviour
     public float gravity_strength = 1;
     public int visibility = 0; //-2 = invisible, -1 = visible in prox., 0 = visible at med. distance, 1 = visible at distance
     public Animator anim;
+    public bool[] creatures_caught = {false,false,false};
     //public float groundDist;
     //public LayerMask terrainLayer;
     //public Collider col;
