@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/Final Game Scenes/Main Menu.unity
     guid: 81a1ee44c181b3b42baba392b71da780
   - enabled: 1
-    path: Assets/Scenes/2.5D Camera Perspective.unity
+    path: Assets/Scenes/Final Game Scenes/2.5D Camera Perspective.unity
     guid: f4355749da295da42ae1f87af3443d85
+  - enabled: 1
+    path: Assets/Scenes/Final Game Scenes/You Win.unity
+    guid: 639f0379710a23b4d875ca94f9a0955c
   m_configObjects: {}

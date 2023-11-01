@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player_Movement : MonoBehaviour
 {
@@ -15,7 +17,8 @@ public class Player_Movement : MonoBehaviour
     public float gravity_strength = 1;
     public int visibility = 0; //-2 = invisible, -1 = visible in prox., 0 = visible at med. distance, 1 = visible at distance
     public Animator anim;
-    public bool[] creatures_caught = {false,false,false};
+    public int[] creatures_caught = {0,0,0};
+    public TextMeshProUGUI[] creature_displays;
     //public float groundDist;
     //public LayerMask terrainLayer;
     //public Collider col;
@@ -36,11 +39,23 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //UI
+        creature_displays[0].text = "Whimsical Rabbit Creature: " + creatures_caught[0];
+        creature_displays[1].text = "Canine of the Forest: " + creatures_caught[1];
+        creature_displays[2].text = "The Living Pumpkin: " + creatures_caught[2];
+        if (creatures_caught[0] > 0 && creatures_caught[1] > 0 && creatures_caught[2] > 0)
+        {
+            creature_displays[0].color = new Color(creature_displays[0].color.r, creature_displays[0].color.g, creature_displays[0].color.b, .5f);
+            creature_displays[1].color = new Color(creature_displays[1].color.r, creature_displays[1].color.g, creature_displays[1].color.b, .5f);
+            creature_displays[2].color = new Color(creature_displays[2].color.r, creature_displays[2].color.g, creature_displays[2].color.b, .5f);
+            creature_displays[3].text = "Return Home...";
+        }
+        //reset input
         directional_input[0] = false; //Up
         directional_input[1] = false; //Up
         directional_input[2] = false; //Up
         directional_input[3] = false; //Up
-        //Input
+        //input
         if (Input.GetKey(KeyCode.W) && !is_platformer_movement)
         {
             directional_input[0] = true; //Up
@@ -167,6 +182,14 @@ public class Player_Movement : MonoBehaviour
                 float velocityInDirection = Vector3.Dot(rb.velocity, Vector3.back);
                 rb.AddForce(new Vector3(0, 0, -(rb.mass * jump_speed - rb.mass * velocityInDirection) / Time.fixedDeltaTime)); //Ft = Mv - Mu
             }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Home") && creatures_caught[0] > 0 && creatures_caught[1] > 0 && creatures_caught[2] > 0)
+        {
+            //go to win screen
+            SceneManager.LoadScene(2);
         }
     }
 }

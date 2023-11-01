@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 public class Creature : MonoBehaviour
 {
     //public
+    public int type = 0;
     public float movement_speed = 2;
     public float tamed_movement_speed_debuff = .75f;
     public float panic_movement_speed = 4.5f;
@@ -16,13 +17,11 @@ public class Creature : MonoBehaviour
     public Animator anim;
     //private
     private Rigidbody rb;
-    private bool tamed = false; //testing--------------------------------------------------------------------
+    private bool tamed = false; 
     private bool movement_active_mode = false;    
     private bool[] directional_input = {false, false, false, false};
     private GameObject player;
     private AudioSource footsteps;
-    //feel free to add more boosts/perks these are all i could think of so far
-    public string[] boosts = { "Health", "Speed", "Sight"};
     // Start is called before the first frame update
     void Start()
     {
@@ -58,32 +57,14 @@ public class Creature : MonoBehaviour
             //while too far from player
             if (movement_active_mode)
             {
-                if (player_direction[0])
-                {
-                    directional_input[2] = false;
-                    directional_input[0] = true;
-                }
-                else if (player_direction[2])
-                {
-                    directional_input[2] = true;
-                    directional_input[0] = false;
-                }
-                if (player_direction[1])
-                {
-                    directional_input[1] = false;
-                    directional_input[3] = true;
-                }
-                else if (player_direction[3])
-                {
-                    directional_input[1] = true;
-                    directional_input[3] = false;
-                }
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movement_speed * Time.deltaTime);
             }
         }
         else
         {
             //untamed behavior
             Vector2 player_pos = player.transform.position;
+            //UDRL*
             bool[] player_direction = playerDirection(player_pos);
             float player_distance = Vector2.Distance(player_pos, transform.position);
             //check if player is visible and close
@@ -198,16 +179,28 @@ public class Creature : MonoBehaviour
     }
     private bool[] playerDirection(Vector2 player_pos)
     {
-        bool player_above = player_pos.y > transform.position.y + 1;
-        bool player_right = player_pos.x > transform.position.x + 1;
-        bool player_below = player_pos.y < transform.position.y - 1;
-        bool player_left = player_pos.x < transform.position.x - 1;
+        bool player_above = player_pos.y > transform.position.y;
+        bool player_right = player_pos.x > transform.position.x;
+        bool player_below = player_pos.y < transform.position.y;
+        bool player_left = player_pos.x < transform.position.x;
         return new bool[]{player_above, player_below, player_right, player_left};
     }
-    public void tame()
+    private float[] playerDistanceInDirection(Vector2 player_pos)
     {
-        //make creature follow player 
-        Player_Inventory.addCreature(gameObject);
-        tamed = true;
+        float player_above = Mathf.Abs(player_pos.y - transform.position.y);
+        float player_right = Mathf.Abs(player_pos.x - transform.position.x);
+        float player_below = Mathf.Abs(player_pos.y - transform.position.y);
+        float player_left = Mathf.Abs(player_pos.x - transform.position.x);
+        return new float[] {player_above, player_below, player_right, player_left };
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Player") && !tamed)
+        {
+            //make creature follow player 
+            player.GetComponent<Player_Movement>().creatures_caught[type] += 1;
+            tamed = true;
+        }
     }
 }
